@@ -654,6 +654,51 @@ canvas {
         font-size: 14px;
         padding: 5px;
     }
+@media screen and (max-width: 768px) {
+    /* ✅ تأكد أن القائمة مخفية افتراضيًا */
+    .sidebar {
+        display: none; /* ✅ اجعلها مخفية أولًا */
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: auto;
+        background-color: #004d00;
+        text-align: center;
+        padding: 10px 0;
+        z-index: 1000;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* ✅ عند النقر على زر القائمة، ستظهر */
+    .sidebar.show {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ✅ تحسين شكل القائمة في الجوال */
+    .sidebar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sidebar li {
+        font-size: 16px;
+        padding: 15px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #006400;
+    }
+
+    /* ✅ زر المينيو ليكون ظاهرًا في الجوال */
+    #menu-btn {
+        display: block;
+        font-size: 24px;
+        background-color: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding
 
     /* ✅ ضبط شاشة تسجيل الدخول */
     .login-container {
