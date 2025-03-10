@@ -1,0 +1,238 @@
+
+  <!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة الاجتماعات</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <!-- ✅ الهيدر -->
+    <header class="header">
+        <div class="header-left">
+            <span id="app-name">نظام إدارة الاجتماعات</span>
+            <span id="current-time" class="current-time"></span>
+                    <span id="header-username" class="header-username"></span>
+
+        </div>
+        <div class="header-center">
+            <img src="logo.png" alt="لوغو التطبيق" class="logo">
+        </div>
+        <div class="header-right">
+            <button id="dark-mode-btn" class="icon-btn">🌙</button>
+            <button id="language-btn" class="icon-btn">🇸🇦</button>
+            <button id="logout-btn" class="icon-btn">🚪</button>
+
+        </div>
+    </header>
+
+    <!-- ✅ شريط زمني متحرك -->
+    <div class="ticker-container">
+        <marquee id="news-ticker">مرحبًا بك في منصة إدارة الاجتماعات!</marquee>
+    </div>
+
+    <!-- ✅ الميني بار -->
+    <!-- ✅ الميني بار -->
+<nav class="sidebar" id="sidebar">
+    <ul>
+        <li onclick="showSection('dashboard')"><i class="fa fa-home"></i> الرئيسية</li>
+    <li onclick="showSection('schedule-meeting')"><i class="fa fa-bell"></i> إشعار موعد</li>
+<li onclick="showSection('add-report')"><i class="fa fa-edit"></i> إضافة تقرير</li>
+
+
+
+    </ul>
+</nav>
+
+    <!-- ✅ شاشة تسجيل الدخول -->
+    <div id="login-container" class="login-container">
+        <h2>🔐 تسجيل الدخول</h2>
+        <form id="login-form">
+            <div class="input-group">
+                <i class="fa fa-user"></i>
+                <input type="text" id="username" placeholder="👤 اسم المستخدم" required>
+            </div>
+            <div class="input-group">
+                <i class="fa fa-lock"></i>
+                <input type="password" id="password" placeholder="🔑 كلمة المرور" required>
+            </div>
+            <button type="submit">🚀 دخول</button>
+        </form>
+        <p id="error-message" class="error-message"></p>
+    </div>
+   <!-- ✅ لوحة التحكم -->
+
+
+  
+<!-- ✅ شاشة الترحيب -->
+<div id="welcome-container" class="welcome-container" style="display: none;">
+    <img src="https://github.com/sweettaste95/hilal-images/blob/main/moi.png?raw=true" alt="شعار الإدارة" class="welcome-logo">
+    <h2>👋 أهلاً وسهلاً، <span id="welcome-username"></span>!</h2>
+    <h3>📍 أنت الآن في <span id="welcome-department"></span></h3>
+    <p>هذه هي منصة **توثيق الاجتماعات** الخاصة بالإدارة العامة للتقنية الرقمية، يمكنك إدارة الاجتماعات والتقارير بكل سهولة.</p>
+</div>
+
+<div id="add-report" class="schedule-meeting-container" style="display: none;">
+    <h2>📑 إضافة تقرير اجتماع</h2>
+
+    <div class="input-group">
+        <label>📅 الاجتماعات الخاصة بك</label>
+        <select id="report-meeting-select">
+            <option value="">🔍 اختر اجتماعًا قيد الانتظار...</option>
+        </select>
+    </div>
+
+    <div class="input-group">
+        <label>📌 موضوع الاجتماع</label>
+        <input type="text" id="report-meeting-topic" disabled>
+    </div>
+
+    <div class="input-group">
+        <label>📅 تاريخ الاجتماع</label>
+        <input type="text" id="report-meeting-date" disabled>
+    </div>
+
+    <div class="input-group">
+        <label>📆 يوم الاجتماع</label>
+        <input type="text" id="report-meeting-day" disabled>
+    </div>
+
+    <div class="input-group">
+        <label>📝 تقرير الاجتماع</label>
+        <textarea id="report-text" placeholder="✏️ اكتب تقرير الاجتماع هنا..." required></textarea>
+    </div>
+
+    <div class="input-group">
+        <label>📂 رفع ملف (اختياري)</label>
+        <input type="file" id="report-file" accept=".pdf,.jpg,.png">
+    </div>
+
+    <button id="submit-report">📤 إرسال التقرير</button>
+</div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+ 
+  <!-- ✅ نموذج إشعار موعد الاجتماع -->
+<div id="schedule-meeting" class="schedule-meeting-container" style="display: none;">
+    <h2>🔔 إشعار موعد اجتماع</h2>
+    <form id="meeting-form">
+        <div class="input-group">
+            <label for="meeting-topic">📌 موضوع الاجتماع</label>
+            <input type="text" id="meeting-topic" placeholder="أدخل موضوع الاجتماع" required>
+        </div>
+      
+      <div class="input-group">
+    <label for="meeting-type">📂 نوع الاجتماع</label>
+    <select id="meeting-type" required>
+        <option value="">اختر نوع الاجتماع</option>
+    </select>
+</div>
+
+      
+      
+      
+        <div class="input-group">
+            <label for="meeting-entity">🏢 الجهة المعنية</label>
+            <input type="text" id="meeting-entity" placeholder="أدخل اسم الجهة" required>
+        </div>
+        <div class="input-group">
+            <label for="meeting-date">📅 تاريخ الاجتماع</label>
+            <input type="date" id="meeting-date" required>
+        </div>
+      <div class="input-group">
+    <label for="meeting-day">📆 يوم الاجتماع</label>
+    <select id="meeting-day" required>
+        <option value="">اختر اليوم</option>
+    </select>
+</div>
+      <div class="input-group">
+    <label for="assigned-employee">👤 الشخص المكلف</label>
+    <select id="assigned-employee" required>
+        <option value="">جارٍ تحميل الأسماء...</option>
+    </select>
+</div>
+
+    <div class="input-group">
+    <label for="employee-email">✉️ البريد الإلكتروني</label>
+    <input type="email" id="employee-email" placeholder="سيتم جلب البريد تلقائيًا" required disabled>
+</div>
+
+       <div class="input-group">
+    <label for="employee-phone">📞 رقم الجوال</label>
+    <input type="tel" id="employee-phone" placeholder="سيتم جلب رقم الجوال تلقائيًا" required disabled>
+</div>
+      
+        <button type="submit">📨 إرسال الإشعار</button>
+    </form>
+    <p id="meeting-message" class="meeting-message"></p>
+</div>
+
+  
+  
+  
+  
+  
+  <div id="dashboard" class="dashboard" style="display: none;">
+    <h2>📊 لوحة التحكم</h2>
+
+    <!-- ✅ إحصائيات الاجتماعات -->
+    <div id="dashboard-stats" class="dashboard-stats">
+        <div class="stat-box">📅 الاجتماعات: <span id="total-meetings">0</span></div>
+        <div class="stat-box">✅ الاجتماعات المكتملة: <span id="completed-meetings">0</span></div>
+        <div class="stat-box">🔜 الاجتماعات القادمة: <span id="upcoming-meetings">0</span></div>
+        <div class="stat-box">⌛ قيد التنفيذ: <span id="pending-meetings">0</span></div>
+    </div>
+
+    <!-- ✅ جدول الاجتماعات القادمة -->
+    <h3>📌 الاجتماعات القادمة</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>الموضوع</th>
+                <th>التاريخ</th>
+                <th>اليوم</th>
+                <th>الموظف المكلف</th>
+                <th>الحالة</th>
+            </tr>
+        </thead>
+        <tbody id="meetings-table-body"></tbody>
+    </table>
+</div>
+
+  
+  
+  
+    <!-- ✅ الفوتر -->
+    <footer class="footer">
+        <p>كافة الحقوق محفوظة للإدارة العامة للتقنية الرقمية - 2025</p>
+    </footer>
+
+</body>
+</html>
