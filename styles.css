@@ -557,6 +557,33 @@ canvas {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ✅ تحسين التصميم للشاشات الصغيرة (الجوالات) */
 @media screen and (max-width: 768px) {
     /* ✅ ضبط الصفحة لتكون طولية ومتناسقة */
@@ -589,33 +616,7 @@ canvas {
         padding: 5px;
     }
 
-    /* ✅ جعل الميني بار يظهر بعرض الشاشة بالكامل */
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: fixed;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background-color: #004d00;
-        text-align: center;
-        padding: 10px 0;
-        z-index: 999;
-    }
-
-    /* ✅ تحويل عناصر الميني بار إلى أفقية بدلاً من عمودية */
-    .sidebar ul {
-        display: flex;
-        justify-content: space-around;
-        padding: 0;
-        margin: 0;
-    }
-
-    .sidebar li {
-        font-size: 14px;
-        padding: 10px;
-    }
-
+   
     /* ✅ تحسين حجم العناوين */
     h2 {
         font-size: 18px;
@@ -654,51 +655,6 @@ canvas {
         font-size: 14px;
         padding: 5px;
     }
-@media screen and (max-width: 768px) {
-    /* ✅ تأكد أن القائمة مخفية افتراضيًا */
-    .sidebar {
-        display: none; /* ✅ اجعلها مخفية أولًا */
-        position: fixed;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        height: auto;
-        background-color: #004d00;
-        text-align: center;
-        padding: 10px 0;
-        z-index: 1000;
-        transition: all 0.3s ease-in-out;
-    }
-
-    /* ✅ عند النقر على زر القائمة، ستظهر */
-    .sidebar.show {
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* ✅ تحسين شكل القائمة في الجوال */
-    .sidebar ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .sidebar li {
-        font-size: 16px;
-        padding: 15px;
-        width: 100%;
-        text-align: center;
-        border-bottom: 1px solid #006400;
-    }
-
-    /* ✅ زر المينيو ليكون ظاهرًا في الجوال */
-    #menu-btn {
-        display: block;
-        font-size: 24px;
-        background-color: transparent;
-        border: none;
-        color: white;
-        cursor: pointer;
-        padding
 
     /* ✅ ضبط شاشة تسجيل الدخول */
     .login-container {
@@ -741,7 +697,99 @@ canvas {
 
 
 
+@media screen and (max-width: 768px) {
+    /* ✅ القائمة مخفية افتراضيًا */
+    .sidebar {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: auto;
+        background-color: #004d00;
+        text-align: center;
+        padding: 10px 0;
+        z-index: 1000;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* ✅ إضافة ظل */
+    }
 
+    /* ✅ عند فتح القائمة ستنزل من الأعلى */
+    .sidebar.show {
+        display: block;
+        animation: slideDown 0.3s ease-in-out;
+    }
+
+    /* ✅ تحسين عناصر القائمة */
+    .sidebar ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar li {
+        font-size: 16px;
+        padding: 12px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #006400;
+        background: #006400;
+        color: white;
+        transition: background 0.3s ease;
+    }
+
+    /* ✅ عند تمرير الماوس أو اللمس */
+    .sidebar li:hover {
+        background: #008000;
+    }
+
+    /* ✅ تحسين زر القائمة */
+    #menu-btn {
+        display: block;
+        font-size: 22px;
+        background-color: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    /* ✅ حركة القائمة عند الفتح */
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .ticker-container {
+        display: block !important; /* ✅ إجبار الشريط على الظهور */
+        width: 100%;
+        background-color: #228B22;
+        color: white;
+        padding: 5px;
+        font-size: 14px;
+        text-align: center;
+        position: fixed;
+        top: 60px; /* ✅ جعله تحت الهيدر مباشرة */
+        z-index: 900;
+        overflow: hidden;
+    }
+
+    marquee {
+        display: inline-block;
+        width: 100%;
+        font-size: 14px;
+    }
+}
 
 
 
