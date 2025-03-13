@@ -76,12 +76,7 @@ if (sectionId !== "add-report") {
 
    }
 
-  
-
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
     // ✅ تعريف العناصر الأساسية
     const loginForm = document.getElementById("login-form");
     const loginContainer = document.getElementById("login-container");
@@ -89,109 +84,120 @@ document.addEventListener("DOMContentLoaded", function () {
     const logoutBtn = document.getElementById("logout-btn");
     const languageBtn = document.getElementById("language-btn");
     const darkModeBtn = document.getElementById("dark-mode-btn");
-    const sidebar = document.getElementById("sidebar");
+    const sidebarMenu = document.getElementById("sidebar-menu"); // ✅ القائمة الجديدة بدلًا من الميني بار القديم
     const menuBtn = document.getElementById("menu-btn");
-    const closeSidebar = document.getElementById("close-sidebar");
     const reportForm = document.getElementById("report-form");
     const currentTimeDisplay = document.getElementById("current-time");
 
     // ✅ التحقق مما إذا كان المستخدم مسجل دخول أم لا
-    if (!localStorage.getItem("username")) {
-        // ❌ إذا لم يكن مسجل دخول، نخفي الميني بار وزر تسجيل الخروج
-        if (sidebar) sidebar.style.display = "none";
-        if (logoutBtn) logoutBtn.style.display = "none";
-    } else {
-        // ✅ إذا كان مسجل دخول، نظهر الميني بار وزر تسجيل الخروج
-        if (sidebar) sidebar.style.display = "block";
-        if (logoutBtn) logoutBtn.style.display = "inline-block";
-    }
-// ✅ تفعيل الوضع الداكن عند الضغط على الزر
-darkModeBtn.addEventListener("click", function () {
-    document.body.classList.toggle("dark-mode");
-
-    // ✅ حفظ الوضع في LocalStorage
-    if (document.body.classList.contains("dark-mode")) {
-        localStorage.setItem("darkMode", "enabled");
-        darkModeBtn.textContent = "☀️"; // تغيير الأيقونة إلى الشمس عند التفعيل
-    } else {
-        localStorage.setItem("darkMode", "disabled");
-        darkModeBtn.textContent = "🌙"; // تغيير الأيقونة إلى القمر عند التعطيل
-    }
-  
-});
-
-// ✅ عند تحميل الصفحة، التحقق مما إذا كان الوضع الداكن مفعلاً مسبقًا
-if (localStorage.getItem("darkMode") === "enabled") {
-    document.body.classList.add("dark-mode");
-    darkModeBtn.textContent = "☀️"; // تغيير الأيقونة إلى الشمس
-} else {
-    document.body.classList.remove("dark-mode");
-    darkModeBtn.textContent = "🌙"; // تغيير الأيقونة إلى القمر
-}
-
-
-    let currentLang = "ar"; // اللغة الافتراضية العربية
-   // ✅ تعريف دالة لتحديث اسم المستخدم في الهيدر
-    function updateHeaderUsername() {
-    const fullName = localStorage.getItem("FullName");
-    const headerUsername = document.getElementById("header-username");
-
-    if (headerUsername) {
-        if (fullName) {
-            headerUsername.textContent = `👤 ${fullName}`;
-            headerUsername.style.display = "inline"; // ✅ إظهار الاسم عند تسجيل الدخول
-        } else {
-            headerUsername.style.display = "none"; // ✅ إخفاء الاسم إذا لم يكن هناك تسجيل دخول
-        }
-    }
-}
-
-   
-  
-    // ✅ التحقق مما إذا كان المستخدم مسجل دخول سابقًا
     if (localStorage.getItem("username")) {
         showDashboard();
-    }
+        updateHeaderUsername();
 
-    // ✅ دالة عرض شاشة الترحيب بعد تسجيل الدخول
-function showDashboard() {
-    // ✅ إخفاء شاشة تسجيل الدخول وعرض لوحة التحكم
-    loginContainer.style.display = "none";
-
-    // ✅ جلب بيانات المستخدم من LocalStorage
-    const fullName = localStorage.getItem("FullName") || "مستخدم غير معروف";
-    const department = localStorage.getItem("department") || "الإدارة غير معروفة";
-
-    // ✅ تحديث بيانات شاشة الترحيب
-    const welcomeUsername = document.getElementById("welcome-username");
-    const welcomeDepartment = document.getElementById("welcome-department");
-    const welcomeContainer = document.getElementById("welcome-container");
-
-    if (welcomeUsername && welcomeDepartment && welcomeContainer) {
-        welcomeUsername.textContent = fullName; // ✅ عرض الاسم الكامل بدلاً من اسم المستخدم العادي
-        welcomeDepartment.textContent = (department === "الإدارة العامة للتقنية الرقمية") 
-            ? "الإدارة العامة للتقنية الرقمية" 
-            : `إدارة ${department}`;
-
-        // ✅ إظهار شاشة الترحيب بعد تسجيل الدخول
-        welcomeContainer.style.display = "block";
-        console.log("✅ شاشة الترحيب ظهرت بنجاح");
+        // ✅ إذا كان مسجل دخول، نظهر زر التلوغو والقائمة الجانبية
+        if (menuBtn) menuBtn.style.display = "inline-block";
+        if (logoutBtn) logoutBtn.style.display = "inline-block";
     } else {
-        console.error("❌ خطأ: لم يتم العثور على عناصر شاشة الترحيب في DOM.");
+        // ❌ إذا لم يكن مسجل دخول، نخفي التلوغو وزر تسجيل الخروج والقائمة الجانبية
+        if (menuBtn) menuBtn.style.display = "none";
+        if (logoutBtn) logoutBtn.style.display = "none";
+        if (sidebarMenu) sidebarMenu.classList.remove("show-menu");
     }
 
-    // ✅ إظهار الميني بار وزر تسجيل الخروج بعد تسجيل الدخول
-    const sidebar = document.getElementById("sidebar");
-    const logoutBtn = document.getElementById("logout-btn");
+    // ✅ تفعيل الوضع الداكن عند الضغط على الزر
+    if (darkModeBtn) {
+        darkModeBtn.addEventListener("click", function () {
+            document.body.classList.toggle("dark-mode");
 
-    if (sidebar) sidebar.style.display = "block";
-    if (logoutBtn) logoutBtn.style.display = "inline-block";
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("darkMode", "enabled");
+                darkModeBtn.textContent = "☀️";
+            } else {
+                localStorage.setItem("darkMode", "disabled");
+                darkModeBtn.textContent = "🌙";
+            }
+        });
+
+        // ✅ عند تحميل الصفحة، التحقق مما إذا كان الوضع الداكن مفعلاً مسبقًا
+        if (localStorage.getItem("darkMode") === "enabled") {
+            document.body.classList.add("dark-mode");
+            darkModeBtn.textContent = "☀️";
+        } else {
+            document.body.classList.remove("dark-mode");
+            darkModeBtn.textContent = "🌙";
+        }
+    }
+
+    let currentLang = "ar"; // ✅ اللغة الافتراضية العربية
+
+    // ✅ تبديل اتجاه القائمة عند تغيير اللغة
+    if (languageBtn) {
+        languageBtn.addEventListener("click", function () {
+            currentLang = currentLang === "ar" ? "en" : "ar";
+            document.documentElement.lang = currentLang;
+            document.body.dir = currentLang === "ar" ? "rtl" : "ltr";
+            languageBtn.textContent = currentLang === "ar" ? "🇸🇦" : "🇬🇧";
+
+            if (sidebarMenu) {
+                sidebarMenu.style.direction = currentLang === "ar" ? "rtl" : "ltr";
+            }
+        });
+    }
+    
+    
+    
+    
+    
+    
+    
+
+    // ✅ تفعيل فتح وإغلاق القائمة الجانبية عند الضغط على زر التلوغو
+  if (menuBtn && sidebarMenu) {
+    menuBtn.addEventListener("click", () => {
+        sidebarMenu.classList.add("show-menu");
+    });
+
+    // ✅ زر إغلاق داخل القائمة
+    const closeBtn = document.createElement("span");
+    closeBtn.innerHTML = "&times;";
+    closeBtn.classList.add("close-menu");
+    sidebarMenu.appendChild(closeBtn);
+
+    closeBtn.addEventListener("click", () => {
+        sidebarMenu.classList.remove("show-menu");
+    });
+
+    // ✅ إغلاق القائمة عند الضغط خارجها
+    document.addEventListener("click", (event) => {
+        if (!sidebarMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+            sidebarMenu.classList.remove("show-menu");
+        }
+    });
+
+    // ✅ إغلاق القائمة عند اختيار عنصر منها
+    const menuItems = sidebarMenu.querySelectorAll("li");
+    menuItems.forEach((item) => {
+        item.addEventListener("click", () => {
+            sidebarMenu.classList.remove("show-menu");
+        });
+    });
 }
 
+    // ✅ تحديث الوقت بشكل تلقائي
+    function updateTime() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString(currentLang === "ar" ? "ar-SA" : "en-US", { hour: '2-digit', minute: '2-digit' });
+        if (currentTimeDisplay) {
+            currentTimeDisplay.textContent = "🕒 " + timeString;
+        }
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+
     // ✅ معالجة تسجيل الدخول
-    // ========================================================================================================================================
-if (loginForm) {
-        loginForm.addEventListener("submit", async function(event) {
+    if (loginForm) {
+        loginForm.addEventListener("submit", async function (event) {
             event.preventDefault();
 
             const username = document.getElementById("username").value.trim();
@@ -202,8 +208,8 @@ if (loginForm) {
                 errorMessage.textContent = "❌ يرجى إدخال اسم المستخدم وكلمة المرور";
                 return;
             }
-// 1:to logon regaser  v93 رابط السكربت  
- 
+
+            // ✅ رابط API للتحقق من بيانات المستخدم
             const scriptURL = "https://script.google.com/macros/s/AKfycbxhw6pt3x0riaD41KOLQ1OeYBylfrlTdpIUUhxtlZrA-KSh7lLccPYk-lm8e5XHO_II/exec";
             const requestURL = `${scriptURL}?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
 
@@ -215,9 +221,9 @@ if (loginForm) {
                     localStorage.setItem("username", username);
                     localStorage.setItem("role", data.role);
                     localStorage.setItem("department", data.department);
-                    localStorage.setItem("FullName", data.FullName); // ✅ استخدم نفس الاسم بدون تعديل
- // ✅ تحديث اسم المستخدم في الهيدر عند تحميل الصفحة
-                   updateHeaderUsername();
+                    localStorage.setItem("FullName", data.FullName);
+
+                    updateHeaderUsername();
                     showDashboard();
                 } else {
                     errorMessage.textContent = "❌ بيانات تسجيل الدخول غير صحيحة.";
@@ -227,8 +233,38 @@ if (loginForm) {
             }
         });
     }
-                                                           
-  function updateHeaderUsername() {
+});
+
+// ✅ دالة عرض شاشة الترحيب بعد تسجيل الدخول
+function showDashboard() {
+    const loginContainer = document.getElementById("login-container");
+    if (loginContainer) loginContainer.style.display = "none";
+
+    const fullName = localStorage.getItem("FullName") || "مستخدم غير معروف";
+    const department = localStorage.getItem("department") || "الإدارة غير معروفة";
+
+    const welcomeUsername = document.getElementById("welcome-username");
+    const welcomeDepartment = document.getElementById("welcome-department");
+    const welcomeContainer = document.getElementById("welcome-container");
+
+    if (welcomeUsername && welcomeDepartment && welcomeContainer) {
+        welcomeUsername.textContent = fullName;
+        welcomeDepartment.textContent = (department === "الإدارة العامة للتقنية الرقمية") 
+            ? "الإدارة العامة للتقنية الرقمية" 
+            : `إدارة ${department}`;
+
+        welcomeContainer.style.display = "block";
+    }
+
+    const menuBtn = document.getElementById("menu-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+
+    if (menuBtn) menuBtn.style.display = "inline-block";
+    if (logoutBtn) logoutBtn.style.display = "inline-block";
+}
+
+// ✅ تحديث اسم المستخدم في الهيدر
+function updateHeaderUsername() {
     const fullName = localStorage.getItem("FullName") || "مستخدم غير معروف";
     const headerUsername = document.getElementById("header-username");
 
@@ -237,91 +273,8 @@ if (loginForm) {
     }
 }
 
-// ✅ استدعاء الدالة عند تحميل الصفحة
+// ✅ استدعاء تحديث اسم المستخدم عند تحميل الصفحة
 document.addEventListener("DOMContentLoaded", updateHeaderUsername);
- // ========================================================================================================================================
-  
-  
-  
-  
-  
-  function logoutUser() {
-    // ✅ عرض رسالة تأكيد قبل تسجيل الخروج
-    if (!confirm("⚠ هل أنت متأكد أنك تريد تسجيل الخروج؟")) {
-        return; // إذا ضغط المستخدم على "إلغاء"، لا يتم تنفيذ تسجيل الخروج
-    }
-
-    const fullName = localStorage.getItem("FullName") || "المستخدم"; // جلب اسم المستخدم من LocalStorage
-
-    // ✅ حذف بيانات المستخدم بالكامل
-    localStorage.clear();
-
-    // ✅ إخفاء جميع العناصر المرتبطة بالمستخدم
-    document.getElementById("dashboard").style.display = "none";
-    document.getElementById("welcome-container").style.display = "none";
-    document.getElementById("schedule-meeting").style.display = "none";
-    document.getElementById("add-report").style.display = "none";
-    document.getElementById("sidebar").style.display = "none";
-    document.getElementById("header-username").style.display = "none";
-    document.getElementById("logout-btn").style.display = "none"; // ✅ إخفاء زر تسجيل الخروج
-
-    
-    // ✅ عرض رسالة تسجيل الخروج
-    const logoutMessage = document.createElement("div");
-    logoutMessage.className = "logout-message";
-    logoutMessage.innerHTML = `
-        <div class="logout-box">
-            <i class="fa fa-sign-out-alt"></i> <!-- أيقونة تسجيل الخروج -->
-            <h2>👋 شكرًا لك، <strong>${fullName}</strong></h2>
-            <p>تم تسجيل خروجك بنجاح.</p>
-            <p>📌 سيتم تحويلك الآن إلى صفحة تسجيل الدخول...</p>
-        </div>
-    `;
-
-    // ✅ إضافة الرسالة إلى الصفحة
-    document.body.appendChild(logoutMessage);
-
-    // ✅ إعادة التوجيه إلى شاشة تسجيل الدخول مباشرة
-    setTimeout(() => {
-window.location.href = window.location.href;
-    }, 2000);
-}
-
-// ✅ ربط زر تسجيل الخروج بالدالة
-document.getElementById("logout-btn").addEventListener("click", logoutUser);
- // =======================================================================================================================================
-  
-    // ✅ تحديث الوقت بشكل تلقائي
-    function updateTime() {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString(currentLang === "ar" ? "ar-SA" : "en-US", { hour: '2-digit', minute: '2-digit' });
-        currentTimeDisplay.textContent = "🕒 " + timeString;
-    }
-  
-    setInterval(updateTime, 1000);
-    updateTime();
-
-  
-    // ✅ تبديل اتجاه الميني بار عند تغيير اللغة
-    languageBtn.addEventListener("click", function() {
-        currentLang = currentLang === "ar" ? "en" : "ar";
-        document.documentElement.lang = currentLang;
-        document.body.dir = currentLang === "ar" ? "rtl" : "ltr";
-        languageBtn.textContent = currentLang === "ar" ? "🇸🇦" : "🇬🇧";
-
-        sidebar.style.right = currentLang === "ar" ? "0" : "unset";
-        sidebar.style.left = currentLang === "ar" ? "unset" : "0";
-    });
-
-    // ✅ تفعيل فتح وإغلاق الميني بار
-    if (menuBtn) {
-        menuBtn.addEventListener("click", () => sidebar.classList.toggle("show"));
-    }
-    if (closeSidebar) {
-        closeSidebar.addEventListener("click", () => sidebar.classList.remove("show"));
-    }
-
-});
 
 //===========================================================================================================
 
