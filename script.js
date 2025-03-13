@@ -152,36 +152,46 @@ if (sectionId !== "add-report") {
     
 
     // ✅ تفعيل فتح وإغلاق القائمة الجانبية عند الضغط على زر التلوغو
-  if (menuBtn && sidebarMenu) {
-    menuBtn.addEventListener("click", () => {
-        sidebarMenu.classList.add("show-menu");
-    });
-
-    // ✅ زر إغلاق داخل القائمة
-    const closeBtn = document.createElement("span");
-    closeBtn.innerHTML = "&times;";
-    closeBtn.classList.add("close-menu");
-    sidebarMenu.appendChild(closeBtn);
-
-    closeBtn.addEventListener("click", () => {
-        sidebarMenu.classList.remove("show-menu");
-    });
-
-    // ✅ إغلاق القائمة عند الضغط خارجها
-    document.addEventListener("click", (event) => {
-        if (!sidebarMenu.contains(event.target) && !menuBtn.contains(event.target)) {
-            sidebarMenu.classList.remove("show-menu");
-        }
-    });
-
-    // ✅ إغلاق القائمة عند اختيار عنصر منها
-    const menuItems = sidebarMenu.querySelectorAll("li");
-    menuItems.forEach((item) => {
-        item.addEventListener("click", () => {
-            sidebarMenu.classList.remove("show-menu");
+    if (menuBtn && sidebarMenu) {
+        const overlay = document.createElement("div");
+        overlay.classList.add("overlay");
+        document.body.appendChild(overlay);
+    
+        menuBtn.addEventListener("click", () => {
+            const isOpen = sidebarMenu.classList.contains("show-menu");
+            
+            if (isOpen) {
+                sidebarMenu.classList.remove("show-menu");
+                overlay.classList.remove("active");
+                menuBtn.innerHTML = "☰"; // إعادة الأيقونة للقائمة
+            } else {
+                sidebarMenu.classList.add("show-menu");
+                overlay.classList.add("active");
+                menuBtn.innerHTML = "&times;"; // تغيير الأيقونة إلى X
+            }
+    
+            menuBtn.classList.toggle("open");
         });
-    });
-}
+    
+        overlay.addEventListener("click", () => {
+            sidebarMenu.classList.remove("show-menu");
+            overlay.classList.remove("active");
+            menuBtn.innerHTML = "☰"; // إعادة الأيقونة عند الإغلاق
+            menuBtn.classList.remove("open");
+        });
+    
+        const menuItems = sidebarMenu.querySelectorAll("li");
+        menuItems.forEach((item) => {
+            item.addEventListener("click", () => {
+                sidebarMenu.classList.remove("show-menu");
+                overlay.classList.remove("active");
+                menuBtn.innerHTML = "☰"; // إعادة الأيقونة عند اختيار عنصر
+                menuBtn.classList.remove("open");
+            });
+        });
+    }
+    
+
 
     // ✅ تحديث الوقت بشكل تلقائي
     function updateTime() {
