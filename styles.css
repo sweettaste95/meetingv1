@@ -147,42 +147,100 @@ body.dark-mode {
 /* ===================================================== */
 /* ✅ 9. القائمة الجانبية (الميني بار) */
 /* ===================================================== */
-
-.sidebar {
-    position: fixed;
-    top: 100px;
-    left: 0;
-    width: 220px;
-    height: calc(100vh - 100px);
-    background: #004d00;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto; /* ✅ تفعيل التمرير عند الحاجة */
+/* ✅ ضبط التلوغو ليكون مناسبًا للجوال */
+.logo {
+    height: 40px; /* الحجم الافتراضي */
 }
 
-/* ✅ تحسين تصميم القائمة الجانبية */
-.sidebar ul {
+/* ✅ تصغير التلوغو للجوال */
+@media (max-width: 768px) {
+    .logo {
+        height: 30px; /* تقليل حجم اللوغو للجوال */
+    }
+}
+
+/* ✅ ضبط زر القائمة (التلوغو) ليكون متناسقًا */
+.menu-toggle {
+    display: none; /* إخفاؤه افتراضيًا */
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+}
+
+/* ✅ إظهار زر القائمة (التلوغو) فقط للجوال */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* يظهر في الجوال فقط */
+    }
+}
+
+/* ✅ تحسين القائمة الجانبية لتكون منسدلة */
+/* ✅ تحسين القائمة الجانبية بحيث تغطي جزءًا أكبر وتظهر بشكل أنيق */
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    right: -300px; /* تبدأ خارج الشاشة */
+    width: 280px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.95); /* إضافة شفافية */
+    border-left: 3px solid #004d00; /* لون أخضر متناسق */
+    box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.2);
+    padding-top: 60px; /* ترك مسافة للهيدر */
+    transition: right 0.3s ease-in-out;
+    z-index: 1200;
+}
+
+/* ✅ إظهار القائمة عند الضغط على زر التلوغو */
+.sidebar-menu.show-menu {
+    right: 0;
+}
+
+/* ✅ تحسين عناصر القائمة */
+.sidebar-menu ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
-.sidebar li {
-    padding: 12px;
-    cursor: pointer;
+.sidebar-menu li {
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #006400; /* لون الخط أخضر داكن */
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 16px;
-    color: white;
-    transition: background 0.3s;
-    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
 }
 
-/* ✅ تأثير عند تمرير الماوس */
-.sidebar li:hover {
-    background: #006400;
+.sidebar-menu li:hover {
+    background: #004d00;
+    color: white;
 }
+
+/* ✅ زر الإغلاق داخل القائمة */
+.close-menu {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #006400;
+}
+
+/* ✅ تحسين القائمة للجوال */
+@media (max-width: 768px) {
+    .sidebar-menu {
+        width: 100%; /* تغطي الشاشة بالكامل في الجوال */
+        right: -100%;
+    }
+
+    .sidebar-menu.show-menu {
+        right: 0;
+    }
+}
+
 /* ===================================================== */
 /* ✅ 8. الشريط الزمني */
 /* ===================================================== */
