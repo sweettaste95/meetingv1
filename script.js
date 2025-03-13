@@ -288,6 +288,61 @@ document.addEventListener("DOMContentLoaded", updateHeaderUsername);
 
 //===========================================================================================================
 
+ // ✅ دالة تسجيل الخروج المحدثة
+function logoutUser() {
+    // ✅ عرض رسالة تأكيد قبل تسجيل الخروج
+    if (!confirm("⚠ هل أنت متأكد أنك تريد تسجيل الخروج؟")) {
+        return; // إذا ضغط المستخدم على "إلغاء"، لا يتم تنفيذ تسجيل الخروج
+    }
+
+    const fullName = localStorage.getItem("FullName") || "المستخدم"; // جلب اسم المستخدم من LocalStorage
+
+    // ✅ حذف بيانات المستخدم بالكامل
+    localStorage.clear();
+
+    // ✅ إخفاء جميع العناصر المرتبطة بالمستخدم
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("welcome-container").style.display = "none";
+    document.getElementById("schedule-meeting").style.display = "none";
+    document.getElementById("add-report").style.display = "none";
+    
+    // ✅ تحديث اسم القائمة الجانبية وفقًا للتعديلات الأخيرة
+    const sidebarMenu = document.getElementById("sidebar-menu");
+    if (sidebarMenu) sidebarMenu.classList.remove("show-menu"); // ✅ إخفاء الميني بار عند تسجيل الخروج
+
+    // ✅ إخفاء اسم المستخدم وزر الخروج
+    document.getElementById("header-username").style.display = "none";
+    document.getElementById("logout-btn").style.display = "none"; 
+
+    // ✅ إخفاء زر القائمة (الميني بار) بعد الخروج
+    const menuBtn = document.getElementById("menu-btn");
+    if (menuBtn) menuBtn.style.display = "none";
+
+    // ✅ عرض رسالة تسجيل الخروج
+    const logoutMessage = document.createElement("div");
+    logoutMessage.className = "logout-message";
+    logoutMessage.innerHTML = `
+        <div class="logout-box">
+            <i class="fa fa-sign-out-alt"></i> <!-- أيقونة تسجيل الخروج -->
+            <h2>👋 شكرًا لك، <strong>${fullName}</strong></h2>
+            <p>تم تسجيل خروجك بنجاح.</p>
+            <p>📌 سيتم تحويلك الآن إلى صفحة تسجيل الدخول...</p>
+        </div>
+    `;
+
+    // ✅ إضافة الرسالة إلى الصفحة
+    document.body.appendChild(logoutMessage);
+
+    // ✅ إعادة التوجيه إلى شاشة تسجيل الدخول مباشرة
+    setTimeout(() => {
+window.location.href = window.location.href;
+    }, 2000);
+}
+
+// ✅ ربط زر تسجيل الخروج بالدالة
+document.getElementById("logout-btn").addEventListener("click", logoutUser);
+
+
 // التقرير
 
 //================================================================================================================
