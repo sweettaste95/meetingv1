@@ -159,13 +159,23 @@ body.dark-mode {
     }
 }
 
-/* ✅ ضبط زر القائمة (التلوغو) ليكون متناسقًا */
-.menu-toggle {
-    display: none; /* إخفاؤه افتراضيًا */
+/* ✅ زر القائمة الرئيسي */
+#menu-btn {
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: white; /* لون الأيقونة */
     cursor: pointer;
-    font-size: 24px;
-    color: white;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    z-index: 1300; /* تأكيد أنه فوق المحتوى */
 }
+
+/* ✅ تغيير الأيقونة عند فتح القائمة */
+#menu-btn.open {
+    transform: rotate(180deg);
+}
+
 
 /* ✅ إظهار زر القائمة (التلوغو) فقط للجوال */
 @media (max-width: 768px) {
@@ -174,28 +184,52 @@ body.dark-mode {
     }
 }
 
-/* ✅ تحسين القائمة الجانبية لتكون منسدلة */
-/* ✅ تحسين القائمة الجانبية بحيث تغطي جزءًا أكبر وتظهر بشكل أنيق */
+/* ✅ تحسين القائمة الجانبية */
 .sidebar-menu {
     position: fixed;
-    top: 0;
+    top: 90px; /* تم رفعها قليلاً بحيث لا تتداخل مع الشريط الزمني */
     right: -300px; /* تبدأ خارج الشاشة */
     width: 280px;
-    height: 100vh;
-    background: rgba(255, 255, 255, 0.95); /* إضافة شفافية */
-    border-left: 3px solid #004d00; /* لون أخضر متناسق */
+    height: calc(100vh - 160px); /* تم تقليل الطول حتى لا تغطي الفوتر */
+    background: #004d00; /* لون أخضر غامق ليكون متناسقًا مع الهيدر والفوتر */
+    border-left: 3px solid #003300;
     box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.2);
-    padding-top: 60px; /* ترك مسافة للهيدر */
+    padding-top: 30px; /* تعديل المسافة الداخلية */
     transition: right 0.3s ease-in-out;
     z-index: 1200;
 }
 
-/* ✅ إظهار القائمة عند الضغط على زر التلوغو */
+/* ✅ عند فتح القائمة */
 .sidebar-menu.show-menu {
     right: 0;
 }
 
-/* ✅ تحسين عناصر القائمة */
+/* ✅ تحسين زر الإغلاق (❌) */
+.close-menu {
+    position: absolute;
+    top: 10px; /* رفعه للأعلى */
+    left: 10px;
+    font-size: 28px; /* تكبيره قليلاً */
+    cursor: pointer;
+    color: white; /* لون أبيض واضح */
+    background: transparent;
+    border: 2px solid white; /* إضافة حدود واضحة */
+    padding: 5px 10px;
+    border-radius: 50%;
+    transition: background 0.3s, color 0.3s, transform 0.3s ease-in-out;
+}
+
+.close-menu:hover {
+    background: white;
+    color: #004d00; /* يتغير للأخضر عند التمرير */
+}
+
+/* ✅ حركة زر الإغلاق عند فتح القائمة */
+.sidebar-menu.show-menu .close-menu {
+    transform: rotate(360deg);
+}
+
+/* ✅ تحسين ألوان الأزرار داخل القائمة */
 .sidebar-menu ul {
     list-style: none;
     padding: 0;
@@ -206,7 +240,7 @@ body.dark-mode {
     padding: 15px 20px;
     font-size: 18px;
     font-weight: bold;
-    color: #006400; /* لون الخط أخضر داكن */
+    color: white; /* تأكيد اللون الأبيض */
     display: flex;
     align-items: center;
     gap: 10px;
@@ -215,31 +249,40 @@ body.dark-mode {
 }
 
 .sidebar-menu li:hover {
-    background: #004d00;
-    color: white;
+    background: white;
+    color: #004d00; /* أخضر غامق عند التمرير */
 }
 
-/* ✅ زر الإغلاق داخل القائمة */
-.close-menu {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #006400;
+/* ✅ تحسين الخلفية المظللة */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
 }
 
 /* ✅ تحسين القائمة للجوال */
 @media (max-width: 768px) {
     .sidebar-menu {
-        width: 100%; /* تغطي الشاشة بالكامل في الجوال */
+        width: 100%;
         right: -100%;
+        top: 70px; /* يبدأ من تحت الشريط الزمني */
+        height: calc(100vh - 140px); /* تعديل الطول */
     }
 
     .sidebar-menu.show-menu {
         right: 0;
     }
 }
+
 
 /* ===================================================== */
 /* ✅ 8. الشريط الزمني */
@@ -489,9 +532,31 @@ option[value="الخميس"]::before { content: "🍂 "; }
 option[value="الجمعة"]::before { content: "🕌 "; }
 option[value="السبت"]::before { content: "🌊 "; }
 /*=====================================================================================*/
+/* ✅ منع ظهور Scroll داخلي داخل إشعار موعد اجتماع فقط */
+#schedule-meeting {
+    overflow: hidden !important; /* يمنع أي Scroll داخلي */
+    height: auto !important; /* يسمح بتمدد الحاوية بدون قيود */
+    max-height: none !important; /* يمنع تحديد ارتفاع يجبر على Scroll */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+/* ✅ التأكد من أن الفورم لا يسبب Scroll */
+#schedule-meeting form {
+    overflow: hidden !important; /* يمنع أي Scroll داخلي */
+    max-height: none !important;
+    height: auto !important;
+}
 
-
+/* ✅ التأكد من أن الحاوية الخاصة بإشعار الاجتماع لا تسبب Scroll إضافي */
+.schedule-meeting-container {
+    overflow: visible !important; /* يمنع أي Scroll داخلي */
+    height: auto !important;
+    max-height: none !important;
+    width: 90%;
+    max-width: 900px;
+}
 
 
 
