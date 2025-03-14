@@ -367,43 +367,68 @@ document.addEventListener("DOMContentLoaded", function () {
     const employeeName = localStorage.getItem("FullName");
     const department = localStorage.getItem("department");
 
-   
+   // ✅ البحث عن مكان إدراج الشريط الزمني داخل نموذج إضافة التقرير
+const reportContainer = document.getElementById("add-report");
+
+// ✅ التأكد من أن الشريط الزمني غير مكرر وإضافته في المكان الصحيح
+let timelineBar = document.getElementById("timeline-bar");
+if (!timelineBar) {
+    timelineBar = document.createElement("div");
+    timelineBar.id = "timeline-bar";
+    timelineBar.textContent = "جاري تحميل الاجتماعات...";
+    reportContainer.insertBefore(timelineBar, reportContainer.firstChild);
+}
+
+// ✅ تحديث محتوى الشريط الزمني عند تحميل الاجتماعات
+function updateTimelineMessage(count) {
+    if (count > 0) {
+        timelineBar.innerHTML = `📢 عزيزي ${employeeName}، لديك <strong>${count}</strong> اجتماعات لم ترفع تقاريرها.`;
+        timelineBar.style.display = "block";
+    } else {
+        timelineBar.innerHTML = `🎉 شكراً لك ${employeeName}، لا توجد اجتماعات قيد الانتظار! 😊`;
+        timelineBar.style.display = "block";
+    }
+}
+
     // ✅ رابط Google Apps Script لجلب الاجتماعات
     const scriptURL = "https://script.google.com/macros/s/AKfycbypTRiy_7wIXloVBVnNY-9jqio9MgT5rUzdSZGp9crVaM75gi4dKIFeAc0aQlSRPrCC/exec";
 
     // ✅ تحميل الاجتماعات "قيد الانتظار" للموظف الحالي
     async function loadPendingMeetings() {
-        if (!employeeName) {
-            console.error("❌ خطأ: لم يتم العثور على اسم الموظف في LocalStorage!");
-            return;
-        }
-
-        const requestURL = `${scriptURL}?action=getPendingMeetings&employee=${encodeURIComponent(employeeName)}`;
-
-        try {
-            const response = await fetch(requestURL);
-            const data = await response.json();
-
-            if (data.status === "Success" && data.meetings.length > 0) {
-                meetingSelect.innerHTML = '<option value="">🔍 اختر اجتماعًا...</option>';
-                data.meetings.forEach(meeting => {
-                    let option = document.createElement("option");
-                    option.value = meeting.id;
-                    option.textContent = `📌 ${meeting.topic} - ${meeting.date}`;
-                    option.setAttribute("data-topic", meeting.topic);
-                    option.setAttribute("data-date", meeting.date);
-                    option.setAttribute("data-day", meeting.day);
-                    meetingSelect.appendChild(option);
-                });
-
-                console.log("✅ تم تحميل الاجتماعات قيد الانتظار!");
-            } else {
-                meetingSelect.innerHTML = '<option value="">⚠️ لا توجد اجتماعات قيد الانتظار</option>';
-            }
-        } catch (error) {
-            console.error("❌ خطأ أثناء جلب الاجتماعات:", error);
-        }
+    if (!employeeName) {
+        console.error("❌ خطأ: لم يتم العثور على اسم الموظف في LocalStorage!");
+        return;
     }
+
+    const requestURL = `${scriptURL}?action=getPendingMeetings&employee=${encodeURIComponent(employeeName)}`;
+
+    try {
+        const response = await fetch(requestURL);
+        const data = await response.json();
+
+        if (data.status === "Success" && data.meetings.length > 0) {
+            meetingSelect.innerHTML = '<option value="">🔍 اختر اجتماعًا...</option>';
+            data.meetings.forEach(meeting => {
+                let option = document.createElement("option");
+                option.value = meeting.id;
+                option.textContent = `📌 ${meeting.topic} - ${meeting.date}`;
+                option.setAttribute("data-topic", meeting.topic);
+                option.setAttribute("data-date", meeting.date);
+                option.setAttribute("data-day", meeting.day);
+                meetingSelect.appendChild(option);
+            });
+
+            console.log("✅ تم تحميل الاجتماعات قيد الانتظار!");
+            updateTimelineMessage(data.meetings.length);
+        } else {
+            meetingSelect.innerHTML = '<option value="">⚠️ لا توجد اجتماعات قيد الانتظار</option>';
+            updateTimelineMessage(0);
+        }
+    } catch (error) {
+        console.error("❌ خطأ أثناء جلب الاجتماعات:", error);
+    }
+}
+
 
     // ✅ عند اختيار اجتماع، يتم استرجاع **موضوع الاجتماع، التاريخ، ويوم الاجتماع**
     meetingSelect.addEventListener("change", function () {
@@ -424,48 +449,8 @@ document.addEventListener("DOMContentLoaded", function () {
     loadPendingMeetings();
 
 
-const meetingSelectGroup = document.querySelector("#report-meeting-select").parentElement;
-meetingSelectGroup.style.width = "100%";
-meetingSelectGroup.style.maxWidth = "400px";
-meetingSelectGroup.style.margin = "20px auto";
-meetingSelectGroup.style.textAlign = "center";
-
-/* ✅ ترتيب باقي الحقول أسفل الـ ComboBox */
-const inputGroups = document.querySelectorAll(".input-group");
-inputGroups.forEach(group => {
-    group.style.width = "100%";
-    group.style.maxWidth = "400px";
-    group.style.margin = "10px auto";
-});
 
   
-  /* ✅ إضافة شريط زمني متحرك أعلى الفورم */
-const timelineBar = document.createElement("div");
-timelineBar.id = "timeline-bar";
-timelineBar.style.cssText = `
-    width: 100%;
-    max-width: 600px;
-    margin: 10px auto;
-    padding: 10px;
-    background: #f8d7da;
-    color: #721c24;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 5px;
-    animation: fadeInOut 3s infinite alternate;
-`;
-document.querySelector("#add-report").insertBefore(timelineBar, document.querySelector("#report-meeting-select").parentElement);
-
-// ✅ تحديث محتوى الشريط الزمني
-function updateTimelineMessage(count) {
-    if (count > 0) {
-        timelineBar.innerHTML = `📢 عزيزي ${employeeName}، لديك ${count} اجتماعات لم ترفع تقاريرها.`;
-        timelineBar.style.display = "block";
-    } else {
-        timelineBar.innerHTML = `🎉 شكراً لك ${employeeName}، لا توجد اجتماعات قيد الانتظار! 😊`;
-        timelineBar.style.display = "block";
-    }
-}
 
 // ✅ تحديث الشريط الزمني عند تحميل الاجتماعات
 async function loadPendingMeetings() {
