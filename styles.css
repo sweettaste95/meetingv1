@@ -10,7 +10,7 @@ html, body {
     overflow-x: hidden;
     overflow-y: auto; /* السماح بالتمرير للصفحة بالكامل */
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #e6f2e6, #cce0cc); /* ✅ تدرج ناعم بين الأخضر الفاتح والأبيض */
+    background-color: #ffffff;
     color: #333;
     padding-top: 80px; /* ترك مساحة للهيدر */
     padding-bottom: 80px; /* ترك مساحة للفوتر */
@@ -140,67 +140,14 @@ body {
 /* ✅ 11. الوضع الليلي */
 /* ===================================================== */
 
-/* ✅ تعديل خلفية الصفحة بالكامل عند تفعيل الوضع الليلي */
+
 body.dark-mode {
-    background: none !important; /* ✅ تعطيل الخلفية المتدرجة */
-    background-color: #181818 !important; /* ✅ جعلها رمادي غامق */
+    background-color: #121212;
     color: #ffffff;
 }
 
-/* ✅ تعديل خلفية الـ body لجعلها أقل قتامة */
-body.dark-mode #schedule-meeting {
-    background-color: #1e1e1e; /* ✅ لون داكن لكن ليس أسود بالكامل */
-    border: 2px solid #444;
-    color: #ffffff;
-}
-
-/* ✅ جعل الفوتر والخلفيات الأخرى أغمق قليلاً */
-body.dark-mode .footer,
-body.dark-mode .ticker-container {
-    background-color: #222; /* ✅ خلفية داكنة موحدة */
-    color: #ddd;
-}
-
-/* ✅ جعل القوائم الجانبية والـ Sidebar أكثر وضوحًا */
-body.dark-mode .sidebar {
-    background-color: #252525; /* ✅ لون داكن أقل قتامة */
-    color: #fff;
-}
 
 
-
-/* ✅ تغيير لون العنوان */
-body.dark-mode #schedule-meeting h2 {
-    background: #333;
-    color: #0f0; /* أخضر فاتح */
-    border: 2px solid #0f0;
-}
-
-/* ✅ تغيير ألوان الحقول */
-body.dark-mode #schedule-meeting .input-group input,
-body.dark-mode #schedule-meeting .input-group select {
-    background: #333;
-    color: #fff;
-    border: 1px solid #555;
-}
-
-/* ✅ تأثير عند التركيز على الحقل */
-body.dark-mode #schedule-meeting .input-group input:focus,
-body.dark-mode #schedule-meeting .input-group select:focus {
-    border-color: #0f0;
-    box-shadow: 0 0 6px rgba(0, 255, 0, 0.5);
-}
-
-/* ✅ تغيير لون زر الإرسال */
-body.dark-mode #schedule-meeting .meeting-button {
-    background: #006400;
-    color: #fff;
-}
-
-body.dark-mode #schedule-meeting .meeting-button:hover {
-    background: #008000;
-    transform: scale(1.05);
-}
 
 
 /* ===================================================== */
@@ -474,11 +421,6 @@ body.dark-mode #menu-btn {
     color: #ffffff;
 }
 
-/* ✅ تغيير ألوان الميني بار عند الوضع الداكن */
-.dark-mode .sidebar {
-    background-color: #222;
-    color: #fff;
-}
 
 /* ✅ تغيير ألوان الهيدر عند الوضع الداكن */
 .dark-mode .header {
@@ -619,8 +561,6 @@ html[lang="ar"] #schedule-meeting .input-group input {
 
 
 
-
-
 /* ✅ أيقونات لأنواع الاجتماعات */
 option[value="اجتماع تقني"]::before { content: "💻 "; }
 option[value="اجتماع أمني"]::before { content: "🔒 "; }
@@ -640,6 +580,8 @@ option[value="الأربعاء"]::before { content: "🌿 "; }
 option[value="الخميس"]::before { content: "🍂 "; }
 option[value="الجمعة"]::before { content: "🕌 "; }
 option[value="السبت"]::before { content: "🌊 "; }
+
+
 /*=====================================================================================*/
 /* ✅ منع ظهور Scroll داخلي داخل إشعار موعد اجتماع فقط */
 #schedule-meeting {
@@ -658,29 +600,32 @@ option[value="السبت"]::before { content: "🌊 "; }
     height: auto !important;
 }
 
-/* ✅ الوضع الليلي الخاص بإشعار موعد جديد فقط */
+
+
+/* ✅ الوضع الليلي الخاص بإشعار موعد جديد */
 body.dark-mode #schedule-meeting {
-    background-color: #1e1e1e; /* ✅ جعل الخلفية رمادي غامق بدلاً من الأسود */
-    border: 2px solid #444;
-    color: #ffffff; /* ✅ نصوص بيضاء */
+    background-color: #1e1e1e; /* ✅ خلفية داكنة */
+    border: 2px solid #ffffff; /* ✅ جعل الإطار أبيض */
+    color: #ffffff;
 }
 
 /* ✅ تغيير لون العنوان */
 body.dark-mode #schedule-meeting h2 {
     background: #333;
-    color: #ffffff; /* ✅ نص أبيض */
+    color: #ffffff; /* ✅ جعل العنوان أبيض */
     border: 2px solid #ffffff; /* ✅ جعل الحدود بيضاء */
+    font-weight: bold; /* ✅ جعل العنوان بخط عريض */
 }
 
 /* ✅ تغيير ألوان الحقول والقوائم المنسدلة */
 body.dark-mode #schedule-meeting .input-group input,
 body.dark-mode #schedule-meeting .input-group select {
-    background: #2a2a2a; /* ✅ لون داكن لكن ليس أسود */
+    background: #2a2a2a; /* ✅ لون داكن */
     color: #ffffff; /* ✅ نص أبيض */
-    border: 1px solid #ffffff; /* ✅ حدود بيضاء */
+    border: 1px solid #cccccc; /* ✅ جعل الحدود أفتح بدرجة رصاصي فاتح */
 }
 
-/* ✅ التأكد من أن النص داخل القوائم المنسدلة واضح */
+/* ✅ تحسين لون النصوص داخل القوائم المنسدلة */
 body.dark-mode #schedule-meeting .input-group select option {
     background: #333;
     color: #ffffff;
@@ -689,7 +634,7 @@ body.dark-mode #schedule-meeting .input-group select option {
 /* ✅ تأثير عند التركيز على الحقل */
 body.dark-mode #schedule-meeting .input-group input:focus,
 body.dark-mode #schedule-meeting .input-group select:focus {
-    border-color: #0f0;
+    border-color: #0f0; /* ✅ تحديد باللون الأخضر الفاتح */
     box-shadow: 0 0 6px rgba(0, 255, 0, 0.5);
 }
 
@@ -697,7 +642,7 @@ body.dark-mode #schedule-meeting .input-group select:focus {
 body.dark-mode #schedule-meeting .meeting-button {
     background: #008000;
     color: #ffffff;
-    border: 1px solid #ffffff;
+    border: 1px solid #ffffff; /* ✅ حدود بيضاء */
 }
 
 body.dark-mode #schedule-meeting .meeting-button:hover {
@@ -705,9 +650,10 @@ body.dark-mode #schedule-meeting .meeting-button:hover {
     transform: scale(1.05);
 }
 
-/* ✅ جعل النصوص الخاصة بالعناوين بيضاء */
+/* ✅ جعل النصوص الخاصة بالعناوين بيضاء وعريضة */
 body.dark-mode #schedule-meeting .input-group label {
     color: #ffffff;
+    font-weight: bold;
 }
 
 /* ✅ تحسين لون النصوص المعطلة */
@@ -720,6 +666,154 @@ body.dark-mode #schedule-meeting .input-group input:disabled {
 body.dark-mode #schedule-meeting .input-group {
     box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ✅ تحسين عنوان نموذج إضافة تقرير */
+#add-report h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #004d00;
+    background: #e6f2e6; /* ✅ خلفية مميزة */
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #008000;
+    text-align: center;
+    width: calc(100% - 30px);
+    display: inline-block;
+}
+
+/* ✅ تحسين تصميم نموذج إضافة تقرير الاجتماع */
+#add-report {
+    background: #f8fdf4; /* ✅ خلفية فاتحة مريحة */
+    border: 3px solid #008000; /* ✅ إطار أخضر واضح */
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+/* ✅ تحسين تخطيط الإدخال ليكون في صفوف متناسقة */
+#add-report .input-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* ✅ صفين متساويين */
+    gap: 15px; /* ✅ توسيع المسافات بين العناصر */
+    justify-content: center;
+}
+
+/* ✅ الحقول التي يجب أن تمتد على عرض الصف بالكامل */
+#add-report .full-width {
+    grid-column: span 2; /* ✅ يجعل العنصر يمتد على عرض الصف بالكامل */
+}
+
+/* ✅ تحسين تخطيط الحقول */
+#add-report .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#add-report .input-group label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #004d00;
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+
+
+
+/* ✅ الوضع الليلي لنموذج إضافة تقرير الاجتماع */
+body.dark-mode #add-report {
+    background-color: #1e1e1e; /* ✅ خلفية داكنة */
+    border: 2px solid #ffffff; /* ✅ جعل الإطار أبيض */
+    color: #ffffff;
+}
+
+/* ✅ تغيير لون العنوان */
+body.dark-mode #add-report h2 {
+    background: #333;
+    color: #ffffff; /* ✅ جعل العنوان أبيض */
+    border: 2px solid #ffffff; /* ✅ جعل الحدود بيضاء */
+    font-weight: bold; /* ✅ جعل العنوان بخط عريض */
+}
+
+/* ✅ تغيير ألوان الحقول والقوائم المنسدلة */
+body.dark-mode #add-report .input-group input,
+body.dark-mode #add-report .input-group select,
+body.dark-mode #add-report .input-group textarea {
+    background: #2a2a2a; /* ✅ لون داكن للتكيست */
+    color: #ffffff; /* ✅ نص أبيض */
+    border: 1px solid #cccccc; /* ✅ جعل الحدود أفتح بدرجة رصاصي فاتح */
+    height: 50px; /* ✅ إعادة الحجم كما كان */
+    font-size: 18px; /* ✅ إعادة حجم النص */
+}
+
+/* ✅ تحسين لون النصوص داخل القوائم المنسدلة */
+body.dark-mode #add-report .input-group select option {
+    background: #333;
+    color: #ffffff;
+}
+
+/* ✅ تأثير عند التركيز على الحقل */
+body.dark-mode #add-report .input-group input:focus,
+body.dark-mode #add-report .input-group select:focus,
+body.dark-mode #add-report .input-group textarea:focus {
+    border-color: #0f0; /* ✅ تحديد باللون الأخضر الفاتح */
+    box-shadow: 0 0 6px rgba(0, 255, 0, 0.5);
+}
+
+/* ✅ تغيير لون زر الإرسال */
+body.dark-mode #add-report #submit-report {
+    background: #008000;
+    color: #ffffff;
+    border: 1px solid #ffffff; /* ✅ حدود بيضاء */
+    height: 50px; /* ✅ إعادة الحجم */
+    font-size: 18px; /* ✅ إعادة حجم النص */
+    padding: 12px;
+}
+
+body.dark-mode #add-report #submit-report:hover {
+    background: #00a000;
+    transform: scale(1.05);
+}
+
+/* ✅ جعل النصوص الخاصة بالعناوين بيضاء وعريضة */
+body.dark-mode #add-report .input-group label {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* ✅ تحسين لون النصوص المعطلة */
+body.dark-mode #add-report .input-group input:disabled {
+    background-color: #555;
+    color: #bbb;
+}
+
+/* ✅ إضافة ظل خفيف للعناصر */
+body.dark-mode #add-report .input-group {
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+
+
+
 
 
 
