@@ -83,44 +83,50 @@
 
 <div id="add-report" class="schedule-meeting-container" style="display: none;">
     <h2>📑 إضافة تقرير اجتماع</h2>
+    <div class="input-container">
 
-    <div class="input-group">
-        <label>📅 الاجتماعات الخاصة بك</label>
-        <select id="report-meeting-select">
-            <option value="">🔍 اختر اجتماعًا قيد الانتظار...</option>
-        </select>
-    </div>
+        <!-- ✅ الصف الأول: اختيار الاجتماع + موضوع الاجتماع -->
+        <div class="input-group">
+            <label>📅 الاجتماعات الخاصة بك</label>
+            <select id="report-meeting-select">
+                <option value="">🔍 اختر اجتماعًا قيد الانتظار...</option>
+            </select>
+        </div>
 
-    <div class="input-group">
-        <label>📌 موضوع الاجتماع</label>
-        <input type="text" id="report-meeting-topic" disabled>
-    </div>
+        <div class="input-group">
+            <label>📌 موضوع الاجتماع</label>
+            <input type="text" id="report-meeting-topic" disabled>
+        </div>
 
-    <div class="input-group">
-        <label>📅 تاريخ الاجتماع</label>
-        <input type="text" id="report-meeting-date" disabled>
-    </div>
+        <!-- ✅ الصف الثاني: تاريخ الاجتماع + يوم الاجتماع -->
+        <div class="input-group">
+            <label>📅 تاريخ الاجتماع</label>
+            <input type="text" id="report-meeting-date" disabled>
+        </div>
 
-    <div class="input-group">
-        <label>📆 يوم الاجتماع</label>
-        <input type="text" id="report-meeting-day" disabled>
-    </div>
+        <div class="input-group">
+            <label>📆 يوم الاجتماع</label>
+            <input type="text" id="report-meeting-day" disabled>
+        </div>
 
-    <div class="input-group">
-        <label>📝 تقرير الاجتماع</label>
-        <textarea id="report-text" placeholder="✏️ اكتب تقرير الاجتماع هنا..." required></textarea>
-    </div>
+        <!-- ✅ الصف الثالث: تقرير الاجتماع (يمتد على كامل العرض) -->
+        <div class="input-group full-width">
+            <label>📝 تقرير الاجتماع</label>
+            <textarea id="report-text" placeholder="✏️ اكتب تقرير الاجتماع هنا..." required></textarea>
+        </div>
 
-    <div class="input-group">
-        <label>📂 رفع ملف (اختياري)</label>
-        <input type="file" id="report-file" accept=".pdf,.jpg,.png">
-    </div>
+        <!-- ✅ الصف الرابع: رفع تقرير الاجتماع (يمتد على كامل العرض) -->
+        <div class="input-group full-width">
+            <label>📂 رفع ملف (اختياري)</label>
+            <input type="file" id="report-file" accept=".pdf,.jpg,.png">
+        </div>
 
+    </div> <!-- ✅ نهاية .input-container -->
+
+    <!-- ✅ زر إرسال التقرير -->
     <button id="submit-report">📤 إرسال التقرير</button>
 </div>
 
-  
-  
   
   
   
