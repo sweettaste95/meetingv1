@@ -141,66 +141,79 @@
   
   
   
- 
-  <!-- ✅ نموذج إشعار موعد الاجتماع -->
+ <!-- ✅ نموذج إشعار موعد الاجتماع -->
 <div id="schedule-meeting" class="schedule-meeting-container" style="display: none;">
-    <h2>🔔 إشعار موعد اجتماع</h2>
+    <h2>🔔 إشعار موعد جديد</h2>
     <form id="meeting-form">
-        <div class="input-group">
-            <label for="meeting-topic">📌 موضوع الاجتماع</label>
-            <input type="text" id="meeting-topic" placeholder="أدخل موضوع الاجتماع" required>
-        </div>
-      
-      <div class="input-group">
-    <label for="meeting-type">📂 نوع الاجتماع</label>
-    <select id="meeting-type" required>
-        <option value="">اختر نوع الاجتماع</option>
-    </select>
-</div>
+        
+        <!-- ✅ الحاوية الأساسية للحقول -->
+        <div class="input-container">
+            
+            <!-- ✅ نوع الاجتماع -->
+            <div class="input-group">
+                <label for="meeting-type">📂 نوع الاجتماع</label>
+                <select id="meeting-type" required>
+                    <option value="">اختر نوع الاجتماع</option>
+                </select>
+            </div>
 
-      
-      
-      
-        <div class="input-group">
-            <label for="meeting-entity">🏢 الجهة المعنية</label>
-            <input type="text" id="meeting-entity" placeholder="أدخل اسم الجهة" required>
-        </div>
-        <div class="input-group">
-            <label for="meeting-date">📅 تاريخ الاجتماع</label>
-            <input type="date" id="meeting-date" required>
-        </div>
-      <div class="input-group">
-    <label for="meeting-day">📆 يوم الاجتماع</label>
-    <select id="meeting-day" required>
-        <option value="">اختر اليوم</option>
-    </select>
-</div>
-      <div class="input-group">
-    <label for="assigned-employee">👤 الشخص المكلف</label>
-    <select id="assigned-employee" required>
-        <option value="">جارٍ تحميل الأسماء...</option>
-    </select>
-</div>
+            <!-- ✅ موضوع الاجتماع -->
+            <div class="input-group">
+                <label for="meeting-topic">📌 موضوع الاجتماع</label>
+                <input type="text" id="meeting-topic" placeholder="أدخل موضوع الاجتماع" required>
+            </div>
+            
+            <!-- ✅ تاريخ الاجتماع -->
+            <div class="input-group">
+                <label for="meeting-date">📅 تاريخ الاجتماع</label>
+                <input type="date" id="meeting-date" required>
+            </div>
 
-    <div class="input-group">
-    <label for="employee-email">✉️ البريد الإلكتروني</label>
-    <input type="email" id="employee-email" placeholder="سيتم جلب البريد تلقائيًا" required disabled>
-</div>
+            <!-- ✅ الجهة المعنية -->
+            <div class="input-group">
+                <label for="meeting-entity">🏢 الجهة المعنية</label>
+                <input type="text" id="meeting-entity" placeholder="أدخل اسم الجهة" required>
+            </div>
 
-       <div class="input-group">
-    <label for="employee-phone">📞 رقم الجوال</label>
-    <input type="tel" id="employee-phone" placeholder="سيتم جلب رقم الجوال تلقائيًا" required disabled>
-</div>
-      
-        <button type="submit">📨 إرسال الإشعار</button>
+            <!-- ✅ يوم الاجتماع -->
+            <div class="input-group">
+                <label for="meeting-day">📆 يوم الاجتماع</label>
+                <select id="meeting-day" required>
+                    <option value="">اختر اليوم</option>
+                </select>
+            </div>
+
+            <!-- ✅ الشخص المكلف -->
+            <div class="input-group">
+                <label for="assigned-employee">👤 الشخص المكلف</label>
+                <select id="assigned-employee" required>
+                    <option value="">جارٍ تحميل الأسماء...</option>
+                </select>
+            </div>
+
+            <!-- ✅ البريد الإلكتروني (يتم جلبه تلقائيًا) -->
+            <div class="input-group">
+                <label for="employee-email">✉️ البريد الإلكتروني</label>
+                <input type="email" id="employee-email" placeholder="سيتم جلب البريد تلقائيًا" required disabled>
+            </div>
+
+            <!-- ✅ رقم الجوال (يتم جلبه تلقائيًا) -->
+            <div class="input-group">
+                <label for="employee-phone">📞 رقم الجوال</label>
+                <input type="tel" id="employee-phone" placeholder="سيتم جلب رقم الجوال تلقائيًا" required disabled>
+            </div>
+            
+        </div> <!-- نهاية .input-container -->
+        
+        <!-- ✅ زر الإرسال -->
+        <button type="submit" class="meeting-button">📨 إرسال الإشعار</button>
+        
     </form>
+
+    <!-- ✅ رسالة تأكيد الإرسال -->
     <p id="meeting-message" class="meeting-message"></p>
 </div>
 
-  
-  
-  
-  
   
   <div id="dashboard" class="dashboard" style="display: none;">
     <h2>📊 لوحة التحكم</h2>
