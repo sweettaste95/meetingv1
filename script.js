@@ -152,6 +152,7 @@ if (sectionId !== "add-report") {
     
 
     // ✅ تفعيل فتح وإغلاق القائمة الجانبية عند الضغط على زر التلوغو
+ // ✅ تفعيل فتح وإغلاق القائمة الجانبية عند الضغط على زر التلوغو
     if (menuBtn && sidebarMenu) {
         const overlay = document.createElement("div");
         overlay.classList.add("overlay");
@@ -191,6 +192,7 @@ if (sectionId !== "add-report") {
         });
     }
     
+
 
 
     // ✅ تحديث الوقت بشكل تلقائي
@@ -287,6 +289,8 @@ function updateHeaderUsername() {
 document.addEventListener("DOMContentLoaded", updateHeaderUsername);
 
 //===========================================================================================================
+    // ✅ تسجيل الخروج
+//===========================================================================================================
 
  // ✅ دالة تسجيل الخروج المحدثة
 function logoutUser() {
@@ -342,6 +346,8 @@ window.location.href = window.location.href;
 // ✅ ربط زر تسجيل الخروج بالدالة
 document.getElementById("logout-btn").addEventListener("click", logoutUser);
 
+
+//================================================================================================================
 
 // التقرير
 
