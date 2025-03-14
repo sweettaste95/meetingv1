@@ -10,7 +10,7 @@ html, body {
     overflow-x: hidden;
     overflow-y: auto; /* السماح بالتمرير للصفحة بالكامل */
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    background: linear-gradient(135deg, #e6f2e6, #cce0cc); /* ✅ تدرج ناعم بين الأخضر الفاتح والأبيض */
     color: #333;
     padding-top: 80px; /* ترك مساحة للهيدر */
     padding-bottom: 80px; /* ترك مساحة للفوتر */
@@ -140,10 +140,69 @@ body {
 /* ✅ 11. الوضع الليلي */
 /* ===================================================== */
 
+/* ✅ تعديل خلفية الصفحة بالكامل عند تفعيل الوضع الليلي */
 body.dark-mode {
-    background-color: #121212;
+    background: none !important; /* ✅ تعطيل الخلفية المتدرجة */
+    background-color: #181818 !important; /* ✅ جعلها رمادي غامق */
     color: #ffffff;
 }
+
+/* ✅ تعديل خلفية الـ body لجعلها أقل قتامة */
+body.dark-mode #schedule-meeting {
+    background-color: #1e1e1e; /* ✅ لون داكن لكن ليس أسود بالكامل */
+    border: 2px solid #444;
+    color: #ffffff;
+}
+
+/* ✅ جعل الفوتر والخلفيات الأخرى أغمق قليلاً */
+body.dark-mode .footer,
+body.dark-mode .ticker-container {
+    background-color: #222; /* ✅ خلفية داكنة موحدة */
+    color: #ddd;
+}
+
+/* ✅ جعل القوائم الجانبية والـ Sidebar أكثر وضوحًا */
+body.dark-mode .sidebar {
+    background-color: #252525; /* ✅ لون داكن أقل قتامة */
+    color: #fff;
+}
+
+
+
+/* ✅ تغيير لون العنوان */
+body.dark-mode #schedule-meeting h2 {
+    background: #333;
+    color: #0f0; /* أخضر فاتح */
+    border: 2px solid #0f0;
+}
+
+/* ✅ تغيير ألوان الحقول */
+body.dark-mode #schedule-meeting .input-group input,
+body.dark-mode #schedule-meeting .input-group select {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+/* ✅ تأثير عند التركيز على الحقل */
+body.dark-mode #schedule-meeting .input-group input:focus,
+body.dark-mode #schedule-meeting .input-group select:focus {
+    border-color: #0f0;
+    box-shadow: 0 0 6px rgba(0, 255, 0, 0.5);
+}
+
+/* ✅ تغيير لون زر الإرسال */
+body.dark-mode #schedule-meeting .meeting-button {
+    background: #006400;
+    color: #fff;
+}
+
+body.dark-mode #schedule-meeting .meeting-button:hover {
+    background: #008000;
+    transform: scale(1.05);
+}
+
+
 /* ===================================================== */
 /* ✅ 9. القائمة الجانبية (الميني بار) */
 /* ===================================================== */
@@ -253,6 +312,64 @@ body.dark-mode {
     color: #004d00; /* أخضر غامق عند التمرير */
 }
 
+
+
+
+
+
+
+/* ===================================================== */
+/* ✅12.  الوضع الليلي لسلايدر القائمة */
+/* ===================================================== */
+
+
+/* ✅ تغيير لون الخلفية العامة للقائمة الجانبية عند الوضع الليلي */
+body.dark-mode .sidebar-menu {
+    background: #222; /* خلفية داكنة أكثر تناسقًا */
+    border-left: 3px solid #444; /* حدود داكنة */
+    box-shadow: -4px 0px 10px rgba(255, 255, 255, 0.2); /* تأثير ظل أبيض خفيف */
+}
+
+/* ✅ تغيير لون النصوص والأيقونات داخل القائمة الجانبية */
+body.dark-mode .sidebar-menu li {
+    color: #ddd; /* لون فاتح */
+}
+
+body.dark-mode .sidebar-menu li:hover {
+    background: #333; /* جعل الخلفية أفتح قليلاً عند التمرير */
+    color: #0f0; /* لون أخضر مميز عند التمرير */
+}
+
+/* ✅ تحسين زر إغلاق القائمة عند الوضع الليلي */
+body.dark-mode .close-menu {
+    color: #ddd; /* لون النص */
+    border: 2px solid #ddd; /* حدود فاتحة */
+}
+
+body.dark-mode .close-menu:hover {
+    background: #ddd;
+    color: #222; /* لون داكن عند التمرير */
+}
+
+/* ✅ تحسين التلوغو عند الوضع الليلي */
+body.dark-mode .logo {
+    filter: brightness(0.8) contrast(1.2); /* تحسين التباين لتظهر بشكل أوضح */
+}
+
+/* ✅ استبدال التلوغو بصورة مخصصة للوضع الليلي (إذا توفر لديك تلوغو آخر) */
+body.dark-mode .logo {
+    content: url('logo-dark.png'); /* ضع اسم صورة التلوغو الداكن هنا */
+}
+
+/* ✅ تحسين لون زر القائمة (التلوغو) */
+body.dark-mode #menu-btn {
+    color: #ddd; /* لون أيقونة الزر */
+}
+/* ===================================================== */
+
+
+
+
 /* ✅ تحسين الخلفية المظللة */
 .overlay {
     position: fixed;
@@ -269,19 +386,6 @@ body.dark-mode {
     display: block;
 }
 
-/* ✅ تحسين القائمة للجوال */
-@media (max-width: 768px) {
-    .sidebar-menu {
-        width: 100%;
-        right: -100%;
-        top: 70px; /* يبدأ من تحت الشريط الزمني */
-        height: calc(100vh - 140px); /* تعديل الطول */
-    }
-
-    .sidebar-menu.show-menu {
-        right: 0;
-    }
-}
 
 
 /* ===================================================== */
@@ -409,109 +513,114 @@ body.dark-mode {
 /*=====================================================================================*/
 /*تصميم اشعار الاجتماع */
 /*=====================================================================================*/
-
-/* ✅ تنسيق نموذج إشعار الاجتماع بإطار جميل وخلفية شفافة */
-.schedule-meeting-container {
-    width: 90%;
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.8); /* ✅ خلفية شفافة */
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    border: 2px solid #008000;
-}
-
+/* ✅ تحسين عنوان النموذج مع خلفية وإطار */
 .schedule-meeting-container h2 {
-    color: #006400;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: bold;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-/* ✅ ترتيب الحقول بشكل عرضي داخل الإطار */
-.input-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.input-group {
-    width: 48%; /* ✅ توزيع الحقول عرضياً */
-    text-align: left;
-    position: relative;
-}
-
-.input-group label {
-    font-size: 14px;
-    font-weight: bold;
-    color: #006400;
-    display: block;
-    margin-bottom: 6px;
-}
-
-.input-group input,
-.input-group select {
-    width: 100%;
-    height: 45px;
+    color: #004d00;
+    background: #e6f2e6; /* ✅ خلفية مميزة */
     padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #008000;
+    text-align: center;
+    width: calc(100% - 30px); /* ✅ التأكد من أن الإطار يظهر بالكامل */
+    display: inline-block;
+  }
+.schedule-meeting-container {
+    background: #f8fdf4; /* خلفية فاتحة مريحة */
+    border: 3px solid #008000; /* ✅ إطار أخضر واضح */
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* ✅ ظل خفيف */
+    text-align: center;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+/* ✅ ضبط تخطيط النموذج ليكون صفين متساويين */
+#schedule-meeting .input-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* ✅ صفين متساويين */
+    gap: 15px; /* ✅ توسيع المسافات */
+    justify-content: center;
+}
+
+/* ✅ تحسين مظهر الحقول وجعلها بنفس الحجم */
+#schedule-meeting .input-group input,
+#schedule-meeting .input-group select {
+  
+    font-weight: bold; /* ✅ خط عريض */
+    width: 100%;
+    height: 46px; /* ✅ التأكد من أن كل الحقول بنفس الطول */
+    padding: 10px;
     border: 2px solid #008000;
     border-radius: 8px;
     font-size: 16px;
     background-color: #ffffff;
-    transition: all 0.3s ease-in-out;
     outline: none;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-sizing: border-box; /* ✅ حل مشكلة القص */
 }
 
-/* ✅ تأثير عند التركيز على الحقل */
-.input-group input:focus,
-.input-group select:focus {
-    border-color: #004d00;
-    box-shadow: 0 0 5px rgba(0, 128, 0, 0.5);
-}
 
-/* ✅ تحسين زر الاجتماعات */
-.meeting-button {
-    background: linear-gradient(45deg, #008000, #006400);
-    color: white;
-    border: none;
-    padding: 14px 20px;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 8px;
-    transition: transform 0.2s ease-in-out, background 0.3s;
-    width: 100%;
-    max-width: 280px;
-    margin-top: 15px;
+/* ✅ تحسين تنسيق العناوين */
+#schedule-meeting .input-group label {
+    font-size: 16px;
     font-weight: bold;
+    color: #004d00;
+    display: block;
+    margin-bottom: 5px;
 }
 
-.meeting-button:hover {
-    background: linear-gradient(45deg, #006400, #004d00);
-    transform: scale(1.05);
-}
-
-/* ✅ تحسين مظهر الحقول المعطلة */
-.input-group input:disabled {
+/* ✅ التأكد من أن الحقول المعطلة تبدو جيدة */
+#schedule-meeting .input-group input:disabled {
     background-color: #e9e9e9;
     color: #666;
 }
 
-/* ✅ دعم اتجاه النصوص بناءً على اللغة */
-html[lang="ar"] .input-group input,
-html[lang="ar"] .input-group select {
+/* ✅ تحسين تأثير التركيز */
+#schedule-meeting .input-group input:focus,
+#schedule-meeting .input-group select:focus {
+   background-color: #c8f7c5 !important; /* ✅ أخضر تفاحي */
+    transition: background-color 0.3s ease-in-out;
+}
+/* ✅ توسيط النصوص داخل القوائم المنسدلة (ComboBox) */
+#schedule-meeting .input-group select {
+    text-align: center; /* ✅ يجعل النصوص داخل الـ select في المنتصف */
+}
+
+/* ✅ زر الإرسال في المنتصف */
+#schedule-meeting .meeting-button {
+    grid-column: span 2;
+    width: 220px;
+    margin: 25px auto;
+    display: block;
+    background: linear-gradient(45deg, #008000, #005500);
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+/* ✅ تحسين زر الإرسال */
+  
+#schedule-meeting .meeting-button:hover {
+    background: linear-gradient(45deg, #006400, #004d00);
+    transform: scale(1.05);
+}
+/* ✅ جعل النصوص العربية تتحرك لليمين */
+html[lang="ar"] #schedule-meeting .input-group input {
     direction: rtl;
     text-align: right;
 }
 
-html[lang="en"] .input-group input,
-html[lang="en"] .input-group select {
-    direction: ltr;
-    text-align: left;
-}
+
+
+
+
 /* ✅ أيقونات لأنواع الاجتماعات */
 option[value="اجتماع تقني"]::before { content: "💻 "; }
 option[value="اجتماع أمني"]::before { content: "🔒 "; }
@@ -549,16 +658,68 @@ option[value="السبت"]::before { content: "🌊 "; }
     height: auto !important;
 }
 
-/* ✅ التأكد من أن الحاوية الخاصة بإشعار الاجتماع لا تسبب Scroll إضافي */
-.schedule-meeting-container {
-    overflow: visible !important; /* يمنع أي Scroll داخلي */
-    height: auto !important;
-    max-height: none !important;
-    width: 90%;
-    max-width: 900px;
+/* ✅ الوضع الليلي الخاص بإشعار موعد جديد فقط */
+body.dark-mode #schedule-meeting {
+    background-color: #1e1e1e; /* ✅ جعل الخلفية رمادي غامق بدلاً من الأسود */
+    border: 2px solid #444;
+    color: #ffffff; /* ✅ نصوص بيضاء */
 }
 
+/* ✅ تغيير لون العنوان */
+body.dark-mode #schedule-meeting h2 {
+    background: #333;
+    color: #ffffff; /* ✅ نص أبيض */
+    border: 2px solid #ffffff; /* ✅ جعل الحدود بيضاء */
+}
 
+/* ✅ تغيير ألوان الحقول والقوائم المنسدلة */
+body.dark-mode #schedule-meeting .input-group input,
+body.dark-mode #schedule-meeting .input-group select {
+    background: #2a2a2a; /* ✅ لون داكن لكن ليس أسود */
+    color: #ffffff; /* ✅ نص أبيض */
+    border: 1px solid #ffffff; /* ✅ حدود بيضاء */
+}
+
+/* ✅ التأكد من أن النص داخل القوائم المنسدلة واضح */
+body.dark-mode #schedule-meeting .input-group select option {
+    background: #333;
+    color: #ffffff;
+}
+
+/* ✅ تأثير عند التركيز على الحقل */
+body.dark-mode #schedule-meeting .input-group input:focus,
+body.dark-mode #schedule-meeting .input-group select:focus {
+    border-color: #0f0;
+    box-shadow: 0 0 6px rgba(0, 255, 0, 0.5);
+}
+
+/* ✅ تغيير لون زر الإرسال */
+body.dark-mode #schedule-meeting .meeting-button {
+    background: #008000;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+body.dark-mode #schedule-meeting .meeting-button:hover {
+    background: #00a000;
+    transform: scale(1.05);
+}
+
+/* ✅ جعل النصوص الخاصة بالعناوين بيضاء */
+body.dark-mode #schedule-meeting .input-group label {
+    color: #ffffff;
+}
+
+/* ✅ تحسين لون النصوص المعطلة */
+body.dark-mode #schedule-meeting .input-group input:disabled {
+    background-color: #555;
+    color: #bbb;
+}
+
+/* ✅ إضافة ظل خفيف للعناصر */
+body.dark-mode #schedule-meeting .input-group {
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
 
 
 
@@ -687,6 +848,98 @@ canvas {
 
 
 
+/* ✅ تحسين القائمة الجانبية (الميني بار) للجوال */
+@media (max-width: 768px) {
+    .sidebar-menu {
+        width: 100%;
+        right: -100%;
+        top: 70px; /* يبدأ تحت الشريط الزمني */
+        height: calc(100vh - 140px);
+    }
+
+    .sidebar-menu.show-menu {
+        right: 0;
+    }
+
+    .sidebar-menu li {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .close-menu {
+        font-size: 24px; /* تصغير زر الإغلاق قليلاً */
+        padding: 4px 8px;
+    }
+}
+
+/* ✅ تحسين إشعار موعد جديد للجوال */
+@media (max-width: 768px) {
+    #schedule-meeting {
+        width: 90%; /* تقليل العرض */
+        padding: 15px; /* تقليل المسافات الداخلية */
+    }
+
+    #schedule-meeting h2 {
+        font-size: 20px; /* تصغير العنوان */
+        padding: 8px;
+    }
+
+    .input-container {
+        grid-template-columns: 1fr; /* ✅ جعل كل المدخلات على شكل عمود واحد */
+        gap: 10px;
+    }
+
+    .input-group input,
+    .input-group select {
+        font-size: 14px;
+        height: 40px; /* تقليل حجم الحقول */
+        padding: 8px;
+    }
+
+    .meeting-button {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+    }
+}
+
+/* ✅ تحسين الشريط الزمني للجوال */
+@media (max-width: 768px) {
+    .ticker-container {
+        font-size: 14px;
+        padding: 8px 0;
+        top: 50px; /* جعله أقرب للهيدر */
+    }
+}
+
+/* ✅ تحسين الجداول والبيانات في الجوال */
+@media (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    canvas {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* ✅ تحسين الأزرار والنماذج */
+@media (max-width: 768px) {
+    .icon-btn {
+        font-size: 20px;
+        padding: 6px;
+    }
+
+    .footer {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
 
 
 
