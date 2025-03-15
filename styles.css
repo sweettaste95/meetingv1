@@ -327,7 +327,7 @@ body.dark-mode .logo {
 
 /* ✅ استبدال التلوغو بصورة مخصصة للوضع الليلي (إذا توفر لديك تلوغو آخر) */
 body.dark-mode .logo {
-    content: url('logo-dark.png'); /* ضع اسم صورة التلوغو الداكن هنا */
+    content: url('lttps://github.com/sweettaste95/hilal-images/blob/main/moi.png?raw=true'); /* ضع اسم صورة التلوغو الداكن هنا */
 }
 
 /* ✅ تحسين لون زر القائمة (التلوغو) */
@@ -621,6 +621,18 @@ option[value="السبت"]::before { content: "🌊 "; }
     max-height: none !important;
     height: auto !important;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
