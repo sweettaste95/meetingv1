@@ -905,3 +905,36 @@ meetingForm.addEventListener("submit", async function (event) {
 
     console.log("✅ تم تحميل أنواع الاجتماعات مع الأيقونات بنجاح!");
 }
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const logo = document.querySelector(".logo");
+    const darkModeBtn = document.getElementById("dark-mode-btn");
+
+    if (!logo || !darkModeBtn) return;
+
+    const lightModeLogo = "https://github.com/sweettaste95/hilal-images/blob/main/moi.png?raw=true"; // شعار الوضع العادي
+    const darkModeLogo = "https://github.com/sweettaste95/hilal-images/blob/main/moi.png?raw=true";  // شعار الوضع الليلي (يمكنك تغييره لاحقًا)
+
+    // ✅ تأكد أن الشعار يظهر دائمًا بشكل صحيح
+    function updateLogo() {
+        if (document.body.classList.contains("dark-mode")) {
+            logo.src = darkModeLogo;
+        } else {
+            logo.src = lightModeLogo;
+        }
+    }
+
+    // ✅ تغيير الشعار عند الضغط على زر الوضع الليلي
+    darkModeBtn.addEventListener("click", function () {
+        setTimeout(updateLogo, 100); // تأخير بسيط لضمان تحديث الصورة بعد تبديل الوضع
+    });
+
+    // ✅ التحقق عند تحميل الصفحة
+    updateLogo();
+});
