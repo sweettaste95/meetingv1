@@ -419,7 +419,6 @@ body.dark-mode #menu-btn {
 .dark-mode {
     background-color: #121212;
     color: #ffffff;
-    overflow-y: hidden; /* ✅ إلغاء الحركة العمودية عند عدم الحاجة */
 }
 
 
@@ -478,13 +477,6 @@ body.dark-mode #menu-btn {
     text-align: center;
     max-width: 900px;
     margin: 40px auto;
-    
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-height: 100vh; /* ✅ منع الفورم من تجاوز الشاشة */
-    overflow: auto; /* ✅ السماح بالتمرير فقط إذا كان المحتوى طويلًا جدًا */
 }
 
 /* ✅ ضبط تخطيط النموذج ليكون صفين متساويين */
@@ -713,12 +705,6 @@ body.dark-mode #schedule-meeting .input-group {
     text-align: center;
     max-width: 900px;
     margin: 40px auto;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-height: 100vh; /* ✅ منع الفورم من تجاوز الشاشة */
-    overflow: auto; /* ✅ السماح بالتمرير فقط إذا كان المحتوى طويلًا جدًا */
 }
 
 /* ✅ تحسين تخطيط الإدخال ليكون في صفوف متناسقة */
@@ -981,37 +967,42 @@ canvas {
 }
 
 @media (max-width: 768px) {
-    #schedule-meeting,
-    #add-report {
-        width: 90%; /* ✅ تقليل العرض ليكون مناسبًا */
-        max-width: 450px; /* ✅ ضبط أقصى عرض */
-        padding: 15px; /* ✅ تقليل المسافات الداخلية */
+    #schedule-meeting form, #add-report form {
+        overflow: hidden;
+        max-height: 100%;
     }
-   #schedule-meeting h2,
-    #add-report h2 {
-        font-size: 22px; /* ✅ تصغير العنوان قليلاً */
-        padding: 10px;
+
+    .input-container {
+        max-height: 75vh; /* منع السكرول إلا عند الضرورة */
+        overflow-y: auto;
+        padding-bottom: 10px;
     }
- .input-container {
-        grid-template-columns: 1fr; /* ✅ جعل كل المدخلات بعمود واحد */
-        gap: 12px;
+
+
+    #schedule-meeting h2 {
+        font-size: 20px; /* تصغير العنوان */
+        padding: 8px;
+    }
+
+    .input-container {
+        grid-template-columns: 1fr; /* ✅ جعل كل المدخلات على شكل عمود واحد */
+        gap: 10px;
     }
 
     .input-group input,
-    .input-group select,
-    .input-group textarea {
-        font-size: 16px;
-        height: 45px; /* ✅ ضبط الحجم */
-        padding: 10px;
+    .input-group select {
+        font-size: 14px;
+        height: 40px; /* تقليل حجم الحقول */
+        padding: 8px;
     }
 
-    .meeting-button,
-    #submit-report {
+    .meeting-button {
         width: 100%;
-        font-size: 18px;
-        padding: 12px;
+        font-size: 16px;
+        padding: 10px;
     }
 }
+
 /* ✅ تحسين الشريط الزمني للجوال */
 @media (max-width: 768px) {
     .ticker-container {
@@ -1050,6 +1041,11 @@ canvas {
     }
 }
 
+@media (max-width: 768px) {
+    body {
+        overflow: hidden; /* يمنع السكرول غير الضروري */
+    }
+}
 
 
 
