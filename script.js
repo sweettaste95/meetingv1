@@ -918,7 +918,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!logo || !darkModeBtn) return;
 
-    const lightModeLogo = "https://github.com/sweettaste95/hilal-images/blob/main/moi.png?raw=true"; // شعار الوضع العادي
+    const lightModeLogo = "https://github.com/sweettaste95/hilal-images/blob/main/moi22.jpeg?raw=true";
+
     const darkModeLogo = "https://github.com/sweettaste95/hilal-images/blob/main/moi.png?raw=true";  // شعار الوضع الليلي (يمكنك تغييره لاحقًا)
 
     // ✅ تأكد أن الشعار يظهر دائمًا بشكل صحيح
