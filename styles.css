@@ -320,15 +320,6 @@ body.dark-mode .close-menu:hover {
     color: #222; /* لون داكن عند التمرير */
 }
 
-/* ✅ تحسين التلوغو عند الوضع الليلي */
-body.dark-mode .logo {
-    filter: brightness(0.8) contrast(1.2); /* تحسين التباين لتظهر بشكل أوضح */
-}
-
-/* ✅ استبدال التلوغو بصورة مخصصة للوضع الليلي (إذا توفر لديك تلوغو آخر) */
-body.dark-mode .logo {
-    content: url('lttps://github.com/sweettaste95/hilal-images/blob/main/moi.png?raw=true'); /* ضع اسم صورة التلوغو الداكن هنا */
-}
 
 /* ✅ تحسين لون زر القائمة (التلوغو) */
 body.dark-mode #menu-btn {
@@ -1165,11 +1156,6 @@ canvas {
         display: block !important;
     }
 
-
-      .logo {
-        height: 40px; /* تقليل الحجم ليكون متناسقًا مع الهيدر في الجوال */
-        max-width: 80px;
-    }
 
     /* ✅ تعديل موقع الأيقونة على الجوال */
     .header-center {
