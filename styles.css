@@ -941,9 +941,8 @@ canvas {
 
 
 
-
-/* ✅ تحسين القائمة الجانبية (الميني بار) للجوال */
 @media (max-width: 768px) {
+    /* ✅ تحسين القائمة الجانبية (الميني بار) للجوال */
     .sidebar-menu {
         width: 100%;
         right: -100%;
@@ -964,56 +963,72 @@ canvas {
         font-size: 24px; /* تصغير زر الإغلاق قليلاً */
         padding: 4px 8px;
     }
-}
 
-@media (max-width: 768px) {
-    #schedule-meeting form, #add-report form {
+    /* ✅ تحسين وتثبيت نموذج `#schedule-meeting` و `#add-report` */
+    #schedule-meeting, #add-report {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vw; /* التأكد من أن الفورم لا يتجاوز الشاشة */
+        max-width: 400px; /* الحد الأقصى للعرض */
+        max-height: 90vh;
         overflow: hidden;
-        max-height: 100%;
+        border: 3px solid #004d00;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        background-color: #1e1e1e;
     }
 
-    .input-container {
-        max-height: 75vh; /* منع السكرول إلا عند الضرورة */
-        overflow-y: auto;
-        padding-bottom: 10px;
-    }
-
-
-    #schedule-meeting h2 {
+    /* ✅ تحسين عنوان الفورم */
+    #schedule-meeting h2, #add-report h2 {
         font-size: 20px; /* تصغير العنوان */
         padding: 8px;
+        text-align: center;
     }
 
+    /* ✅ تحسين ترتيب الحقول داخل الفورم */
     .input-container {
-        grid-template-columns: 1fr; /* ✅ جعل كل المدخلات على شكل عمود واحد */
+        display: flex;
+        flex-direction: column;
         gap: 10px;
+        max-height: 70vh;
+        overflow-y: auto;
+        padding-bottom: 10px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
+    /* ✅ تحسين الحقول داخل الفورم */
     .input-group input,
     .input-group select {
         font-size: 14px;
-        height: 40px; /* تقليل حجم الحقول */
+        height: 40px;
         padding: 8px;
+        width: 100%;
     }
 
+    /* ✅ زر الإرسال */
     .meeting-button {
         width: 100%;
         font-size: 16px;
         padding: 10px;
     }
-}
 
-/* ✅ تحسين الشريط الزمني للجوال */
-@media (max-width: 768px) {
+    /* ✅ إزالة السكرول من الصفحة بالكامل */
+    body {
+        overflow: hidden !important;
+        height: 100vh;
+    }
+
+    /* ✅ تحسين الشريط الزمني للجوال */
     .ticker-container {
         font-size: 14px;
         padding: 8px 0;
-        top: 50px; /* جعله أقرب للهيدر */
+        top: 50px;
     }
-}
 
-/* ✅ تحسين الجداول والبيانات في الجوال */
-@media (max-width: 768px) {
+    /* ✅ تحسين الجداول والبيانات */
     table {
         font-size: 14px;
     }
@@ -1026,10 +1041,8 @@ canvas {
         max-width: 100%;
         height: auto;
     }
-}
 
-/* ✅ تحسين الأزرار والنماذج */
-@media (max-width: 768px) {
+    /* ✅ تحسين الأزرار والنماذج */
     .icon-btn {
         font-size: 20px;
         padding: 6px;
@@ -1040,19 +1053,6 @@ canvas {
         padding: 8px;
     }
 }
-
-@media (max-width: 768px) {
-    body {
-        overflow: hidden; /* يمنع السكرول غير الضروري */
-    }
-}
-
-
-
-
-
-
-
 
 
 
