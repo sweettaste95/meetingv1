@@ -1121,23 +1121,16 @@ canvas {
 
 
 @media (max-width: 768px) {
-    .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        background-color: #006400; /* لون الهيدر */
-        color: white;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
+    /* ✅ إخفاء الوقت واسم التطبيق في الهيدر للجوال */
+    .header-left {
+        display: none !important;
     }
 
-    /* ✅ إخفاء اسم التطبيق والوقت في الهيدر على الجوال */
-    .header-left {
-        display: none;
+    /* ✅ إظهار الوقت في القائمة الجانبية فقط على الجوال */
+    .sidebar-time {
+        display: block !important;
     }
+
 
     /* ✅ تصغير اللوغو */
     .header-center .logo {
@@ -1221,7 +1214,7 @@ canvas {
     .sidebar-menu .logout-btn:hover {
         background: darkred;
     }
-}
+
 
 
 
