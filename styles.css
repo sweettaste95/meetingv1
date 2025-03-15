@@ -1013,22 +1013,36 @@ canvas {
         padding: 4px 8px;
     }
 
-    /* ✅ تحسين وتثبيت نموذج `#schedule-meeting` و `#add-report` */
-    #schedule-meeting, #add-report {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90vw; /* التأكد من أن الفورم لا يتجاوز الشاشة */
-        max-width: 400px; /* الحد الأقصى للعرض */
-        max-height: 90vh;
-        overflow: hidden;
-        border: 3px solid #004d00;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        padding: 15px;
-        background-color: #1e1e1e;
-    }
-
+   /* ✅ تثبيت نموذج إشعار الاجتماع */
+#schedule-meeting {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw; /* ✅ التأكد من أن الفورم لا يتجاوز الشاشة */
+    max-width: 400px; /* ✅ الحد الأقصى للعرض */
+    max-height: 90vh;
+    overflow: hidden;
+    border: 3px solid #004d00;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    background-color: #f8fdf4; /* ✅ لون الخلفية الفاتح */
+}
+/* ✅ تثبيت نموذج إضافة تقرير الاجتماع */
+#add-report {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 400px;
+    max-height: 90vh;
+    overflow: hidden;
+    border: 3px solid #004d00;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    background-color: #f8fdf4; 
+ }
     /* ✅ تحسين عنوان الفورم */
     #schedule-meeting h2, #add-report h2 {
         font-size: 20px; /* تصغير العنوان */
