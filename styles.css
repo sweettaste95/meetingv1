@@ -1117,7 +1117,112 @@ canvas {
     }
 }
 
+/*========================================================================
 
+
+
+@media (max-width: 768px) {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #006400; /* لون الهيدر */
+        color: white;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    /* ✅ إخفاء اسم التطبيق والوقت في الهيدر على الجوال */
+    .header-left {
+        display: none;
+    }
+
+    /* ✅ تصغير اللوغو */
+    .header-center .logo {
+        height: 35px;
+    }
+
+    /* ✅ تقليل عدد الأزرار في الهيدر للجوال */
+    .header-right {
+        display: flex;
+        gap: 10px;
+    }
+
+    /* ✅ تكبير زر القائمة 📂 لأنه سيكون الرئيسي في الجوال */
+    #menu-btn {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar-menu {
+        width: 100%;
+        right: -100%;
+        top: 70px; /* يبدأ تحت الهيدر */
+        height: calc(100vh - 70px);
+        background: #004d00;
+        border-left: 3px solid #003300;
+        padding-top: 20px;
+    }
+
+    /* ✅ إضافة قسم يحتوي على معلومات المستخدم */
+    .sidebar-menu .user-info {
+        text-align: center;
+        padding: 15px;
+        color: white;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .sidebar-menu .user-info h3 {
+        margin: 10px 0;
+        font-size: 18px;
+    }
+
+    .sidebar-menu .user-info p {
+        font-size: 14px;
+        color: #ccc;
+    }
+
+    /* ✅ تحسين تصميم عناصر القائمة */
+    .sidebar-menu ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar-menu li {
+        padding: 12px;
+        font-size: 18px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .sidebar-menu li:hover {
+        background: white;
+        color: #004d00;
+    }
+
+    /* ✅ زر الخروج داخل القائمة */
+    .sidebar-menu .logout-btn {
+        background: red;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .sidebar-menu .logout-btn:hover {
+        background: darkred;
+    }
+}
 
 
 
